@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="css/main.css">  
-  <title>Rock Paper Scissor</title>
+	<meta charset="utf-8">
+	<meta name="description" content="This is an example of a Rock Paper Scissors game">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="css/main.css">
+	<title>Rock Paper Scissors</title>
 </head>
 <body>
-	<h1 class="title">Choose your weapon</h1>
-	<div class="wrapper">
-		<div class="wrapper-section js-rock">
-			<img src="images/rock.jpg" alt="fist representing a rock">
-			<p>Rock</p>
+	<div class="game-board" id="js-game-board">
+		<h1 class="title">Choose your weapon</h1>
+		<p class="instruction">You need to score <span id="js-score-to-reach"></span> to win the game</p>
+		<div class="wrapper">
+			<div class="card" type="button" onclick="playerHasChosen('rock')">
+				<img src="images/rock.jpg" alt="fist representing a rock">
+				<p>Rock</p>
+			</div>
+			<div class="card" onclick="playerHasChosen('paper')">
+				<img src="images/paper.jpg" alt="hand open representing a sheet of paper">
+				<p>Paper</p>
+			</div>
+			<div class="card" onclick="playerHasChosen('scissors')">
+				<img src="images/scissor.jpg" alt="hand with two fingers V representing scissors">
+				<p>Scissors</p>
+			</div>
 		</div>
-		<div class="wrapper-section js-paper">
-			<img src="images/paper.jpg" alt="hand open representing a sheet of paper">
-			<p>Paper</p>
-		</div>
-		<div class="wrapper-section js-scissor">
-			<img src="images/scissor.jpg" alt="hand with two fingers V representing scissors">
-			<p>Scissors</p>
-		</div>
+		<p class="message" id="js-message"></p>
+		<p>
+			You <span class="score" id="js-player-score"></span> - <span class="score" id="js-computer-score"></span>
+			Computer
+		</p>
+		<p class="message--end" id="js-end-game-message"></p>
 	</div>
-	<p class="js-message c-message"></p>
+	<button id="js-button-start-game" class="button--init" onClick="initGame()">start game</button>
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

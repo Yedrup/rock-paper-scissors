@@ -1,67 +1,108 @@
+:root {
+	--main-bg-color: rgb(95, 96, 94);
+	--game-bg-color: rgba(255, 255, 255, 0.5);
+	--card-shadow: rgba(38, 38, 38, 0.2);
+	--primary-color: #158088;
+	--second-color: #092A2C;
+	--hightlight-color: #a0ccd1;
+}
+
 body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: rgb(95,96,94);
-	height: auto;
-    width: 100%;
+	background-color: var(--main-bg-color);
+	color: var(--second-color);
+	font-size: 1.5rem;
 	height: 100%;
 }
+
 .title {
 	font-size: 2rem;
-	color: #B5FEFF;
 }
 
+.message--end,
+.score,
+.title {
+	color: var(--hightlight-color);
+}
 
+.instruction {
+	font-size: 1.5rem;
+}
+
+.game-board {
+	display: none;
+}
+
+.game-board--displayed {
+	flex-direction: column;
+	align-items: center;
+}
 
 .wrapper {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	width: 100%;
-	background-color: rgba(255,255,255,0.5); 
+	background-color: var(--game-bg-color);
 	padding: .5rem;
 	border-radius: 5%;
+	max-width: 95vw;
 }
 
-.wrapper-section {
+.card {
 	display: flex;
 	flex-direction: column;
-	outline: 1px solid #062629;
+	box-shadow: 1px 1px var(--card-shadow);
 	width: 30%;
 }
 
-.wrapper-section p  {
+.card img {
+	width: 100%;
+}
+
+.card:active {
+	outline: 2px solid var(--hightlight-color);
+}
+
+.card p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 2rem;
 	margin: 0;
-	background-color: #158088;	
+	background-color: var(--primary-color);
 	color: #FFF;
 }
 
-.c-message {
-	color: #092A2C;
-	font-size: 1.5rem;
+.button--init {
+	background-color: var(--primary-color);
+	color: #FFF;
+	padding: .5rem 1rem;
+	border: none;
+	border-radius: .5rem;
 }
 
+.button--init:focus {
+	outline: 0;
+}
+
+@media screen and (max-width: 640px) {
+	body,
+	.instruction,
+	.title {
+		font-size: 1rem;
+	}
+}
 
 @media screen and (min-width: 640px) {
-
 	.wrapper {
-		width: 60%;
 		padding: 1rem;
-	}
-
-	.wrapper-section {
-		width: auto;		
 	}
 }
 
 @media screen and (min-width: 1024px) {
-	
-		.wrapper {
-			width: 50%;
-		}
+	.wrapper {
+		width: 100%;
+	}
 }
