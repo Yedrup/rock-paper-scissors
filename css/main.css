@@ -1,108 +1,158 @@
-:root {
-	--main-bg-color: rgb(95, 96, 94);
-	--game-bg-color: rgba(255, 255, 255, 0.5);
-	--card-shadow: rgba(38, 38, 38, 0.2);
-	--primary-color: #158088;
-	--second-color: #092A2C;
-	--hightlight-color: #a0ccd1;
+@import './variables.css';
+@import './generic.css';
+@import './animations.css';
+@import './utilities.css';
+
+html {
+  font-size: 16px;
 }
 
 body {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: var(--main-bg-color);
-	color: var(--second-color);
-	font-size: 1.5rem;
-	height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--main-bg-color);
+  text-align: center;
+  font-family: var(--familyFont);
+  color: var(--secondary-color);
+  font-size: 1.25rem;
 }
 
-.title {
-	font-size: 2rem;
+/* Loader */
+
+.section-loader {
+  display: grid;
+  grid-auto-rows: 15vh;
+  padding: 4rem 0;
+  animation: curtainRaisingAnim 1s ease-in-out 1s forwards;
 }
 
-.message--end,
-.score,
-.title {
-	color: var(--hightlight-color);
+.section-loader__text {
+  color: rgb(173, 148, 148);
+  animation: loadingTextAnim 1s ease-in-out var(--timeDelay) alternate;
 }
 
-.instruction {
-	font-size: 1.5rem;
+.section-loader__text-1 {
+  --timeDelay: 0.1s;
 }
+.section-loader__text-2 {
+  --timeDelay: 0.2s;
+}
+.section-loader__text-3 {
+  --timeDelay: 0.3s;
+}
+.section-loader__text-4 {
+  --timeDelay: 0.4s;
+}
+.section-loader__text-5 {
+  --timeDelay: 0.5s;
+}
+
+/* Select panel */
+.select-panel:not([hidden]) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+  grid-gap: 1.2rem;
+}
+
+.select-panel__title {
+  margin: 1rem 0 0;
+  font-size: 1.4rem;
+}
+
+.select-panel__subtitle {
+  color: var(--secondary-color);
+}
+
+.round-count-wrapper {
+  margin: 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.round-count-wrapper .round-value {
+  padding: 0.25rem 0.5rem;
+  border-radius: 2px;
+}
+
+.round-count-wrapper input:checked + .round-value {
+  background-color: var(--highlight-primary-color);
+  color: var(--contrast-color-dark);
+}
+
+/* TODO: check for chrome update fixing the usage of grid on fieldset to use this style directly on  .fieldset--select-mode https://bugs.chromium.org/p/chromium/issues/detail?id=262679 */
+.select-game__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 2.5rem;
+}
+
+.select-game__cards input[type='radio'],
+.round-count-wrapper input[type='radio'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.select-game__cards input[type='radio']:checked ~ .card__title,
+.select-game__cards input[type='radio']:checked ~ .select-game__card__img {
+  outline: var(--highlight-primary-color) solid 3px;
+}
+
+.select-game__card {
+  max-height: 18rem;
+}
+
+.select-game__card__img {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  width: 100%;
+  height: 100%;
+  max-height: 13rem;
+  object-fit: scale-down;
+  background: transparent;
+}
+
+/* game board*/
 
 .game-board {
-	display: none;
+  min-width: 100vw;
+  padding: 0.5rem;
+  text-align: center;
 }
 
-.game-board--displayed {
-	flex-direction: column;
-	align-items: center;
+.game-board__instruction {
+  margin: 0.5rem;
 }
 
-.wrapper {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	background-color: var(--game-bg-color);
-	padding: .5rem;
-	border-radius: 5%;
-	max-width: 95vw;
+.game-board__cards {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, 150px);
+  grid-auto-rows: max-content;
+  justify-content: center;
 }
 
-.card {
-	display: flex;
-	flex-direction: column;
-	box-shadow: 1px 1px var(--card-shadow);
-	width: 30%;
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 12px;
+  }
 }
 
-.card img {
-	width: 100%;
+@media screen and (max-width: 500px) {
+  .game-board__cards {
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, 90px);
+  }
+
+  .game-board__card__img {
+    object-fit: cover;
+    max-height: 10rem;
+  }
 }
 
-.card:active {
-	outline: 2px solid var(--hightlight-color);
-}
-
-.card p {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 2rem;
-	margin: 0;
-	background-color: var(--primary-color);
-	color: #FFF;
-}
-
-.button--init {
-	background-color: var(--primary-color);
-	color: #FFF;
-	padding: .5rem 1rem;
-	border: none;
-	border-radius: .5rem;
-}
-
-.button--init:focus {
-	outline: 0;
-}
-
-@media screen and (max-width: 640px) {
-	body,
-	.instruction,
-	.title {
-		font-size: 1rem;
-	}
-}
-
-@media screen and (min-width: 640px) {
-	.wrapper {
-		padding: 1rem;
-	}
-}
-
-@media screen and (min-width: 1024px) {
-	.wrapper {
-		width: 100%;
-	}
+@media screen and (min-width: 500px) {
+  .select-game__cards .select-game__card:hover {
+    background-color: var(--card-bg-hover);
+  }
 }

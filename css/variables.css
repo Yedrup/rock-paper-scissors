@@ -1,0 +1,13 @@
+:root {
+  --familyFont: Monaco, 'Lucida Console', monospace;
+  --primary-color: #309aa2;
+  --secondary-color: #c8a6c1;
+  --highlight-primary-color: #46ebf7;
+  --highlight-secondary-color: #ed08bf;
+  --main-bg-color: rgb(16, 19, 28);
+  --card-bg: rgb(13, 16, 26);
+  --card-bg-hover: rgba(123, 98, 128, 0.459);
+  --game-bg-color: rgba(26, 155, 194, 0.132);
+  --card-shadow: rgba(38, 38, 38, 0.2);
+  --contrast-color-dark: rgb(9, 9, 12);
+}

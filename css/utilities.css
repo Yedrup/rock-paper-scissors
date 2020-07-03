@@ -1,0 +1,7 @@
+.u-animation-appearance {
+  animation: easeInAppearance 0.3s ease-in;
+}
+
+.u-animation-shift {
+  animation: shift 0.1s ease-in-out 2 alternate-reverse;
+}

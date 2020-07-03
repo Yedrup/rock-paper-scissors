@@ -1,39 +1,84 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="This is an example of a Rock Paper Scissors game">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <meta name="viewport" content="width=device-width">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="css/main.css">
 	<title>Rock Paper Scissors</title>
 </head>
+
 <body>
-	<div class="game-board" id="js-game-board">
-		<h1 class="title">Choose your weapon</h1>
-		<p class="instruction">You need to score <span id="js-score-to-reach"></span> to win the game</p>
-		<div class="wrapper">
-			<div class="card" type="button" onclick="playerHasChosen('rock')">
-				<img src="images/rock.jpg" alt="fist representing a rock">
-				<p>Rock</p>
+	<div class="section-loader  js-loader">
+		<p class="section-loader__text section-loader__text-1	">Rock</p>
+		<p class="section-loader__text section-loader__text-2	">Paper</p>
+		<p class="section-loader__text section-loader__text-3	">Scissors</p>
+		<p class="section-loader__text section-loader__text-4	">Lizard</p>
+		<p class="section-loader__text section-loader__text-5	">Spock</p>
+	</div>
+	<form class="select-panel js-select-panel u-animation-appearance" hidden>
+		<h1 class="title select-panel__title js-select-panel__title">
+			Welcome on Scissors, Paper, Rock! (Lizard, Spock)
+			<p class="select-panel__subtitle">Choose Mode</p>
+		</h1>
+		<fieldset class='fieldset js-select-rounds'>
+			<legend class='fieldset__legend'>Rounds</legend>
+			<label class="round-count-wrapper" for="5">
+				<input type="radio" id="5" name="round" value="5" checked>
+				<span class="round-value">5</span>
+			</label>
+
+			<label class="round-count-wrapper" for="8">
+				<input type="radio" id="8" name="round" value="8">
+				<span class="round-value">8</span>
+			</label>
+
+			<label class="round-count-wrapper" for="10">
+				<input type="radio" id="10" name="round" value="10">
+				<span class="round-value">10</span>
+			</label>
+
+		</fieldset>
+
+		<fieldset class='fieldset'>
+			<legend class="fieldset__legend">Mode</legend>
+			<div class="select-game__cards">
+				<label for='modeDefault' class="card select-game__card js-select-game__card">
+					<input type="radio" id="modeDefault" name="mode" value="modeDefault" checked>
+					<img class="select-game__card__img" src="./images/mode-default.png" alt="default mode : Scissors Paper Rock">
+					<p class="card__title">Original version</p>
+				</label>
+
+				<label for="modeTBBT" class="card select-game__card js-select-game__card">
+					<input type="radio" id="modeTBBT" name="mode" value="modeTBBT">
+					<img class="select-game__card__img" src="./images/mode-tbbt.png"
+						alt=" big bang theory version with Spock and Lizard">
+					<p class="card__title">Big Bang Theory version </p>
+				</label>
 			</div>
-			<div class="card" onclick="playerHasChosen('paper')">
-				<img src="images/paper.jpg" alt="hand open representing a sheet of paper">
-				<p>Paper</p>
-			</div>
-			<div class="card" onclick="playerHasChosen('scissors')">
-				<img src="images/scissor.jpg" alt="hand with two fingers V representing scissors">
-				<p>Scissors</p>
-			</div>
+		</fieldset>
+
+		<input class="button button--init" type="submit" value="Submit">
+	</form>
+
+	<div class="game-board js-game-board" hidden>
+		<h1 class="title u-animation-shift">Choose your weapon</h1>
+		<p class="game-board__instruction">You need to score <span class="js-score-to-reach"></span> to win the game</p>
+
+		<div class="game-board__cards js-game-board__cards">
 		</div>
-		<p class="message" id="js-message"></p>
+		<p class="js-game-board__message"></p>
 		<p>
-			You <span class="score" id="js-player-score"></span> - <span class="score" id="js-computer-score"></span>
+			You <span class="highlighted js-player-score"></span> - <span class="highlighted js-computer-score"></span>
 			Computer
 		</p>
-		<p class="message--end" id="js-end-game-message"></p>
+		<p class="highlighted js-game-board__end-message"></p>
+		<button class="button js-button-restart" hidden>Restart</button>
 	</div>
-	<button id="js-button-start-game" class="button--init" onClick="initGame()">start game</button>
-	<script type="text/javascript" src="js/script.js"></script>
+
+	<script type="module" src="js/script.js"></script>
 </body>
+
 </html>
